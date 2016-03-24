@@ -3,7 +3,6 @@ package edu.kit.informatik.gameElements.board;
 import edu.kit.informatik.exceptions.CellAccessException;
 import edu.kit.informatik.gameElements.Player;
 import edu.kit.informatik.gameElements.Stone;
-import edu.kit.informatik.scanner.Scanner;
 
 
 
@@ -77,6 +76,10 @@ public abstract class GameBoard {
     }
 
 
+    /**
+     * Ermittelt den Gewinner
+     * @return der Gewinner.
+     */
     public abstract Player getWinner();
 
     /**

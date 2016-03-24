@@ -1,5 +1,6 @@
 package edu.kit.informatik.scanner;
 
+import edu.kit.informatik.exceptions.CellAccessException;
 import edu.kit.informatik.gameElements.Player;
 import edu.kit.informatik.gameElements.Stone;
 import edu.kit.informatik.gameElements.board.Cell;
@@ -43,7 +44,18 @@ public abstract class Scanner {
      * @param y Ende
      * @return Zellen dazwischen
      */
-    public abstract Cell[] getRows(int x, int y);
+    public Cell[] getRows(int x, int y) {
+        Cell[] cells = new Cell[4];
+        for (int i = 0; i < 4; i++) {
+            try {
+                cells[i] = getBoard().getCell(x, y + i);
+            } catch (CellAccessException e) {
+                cells[i] = null;
+            }
+        }
+
+        return cells;
+    }
 
     /**
      * Hiermit holen wir uns vertikal die zellen von oben nach unten
@@ -51,7 +63,18 @@ public abstract class Scanner {
      * @param y ende
      * @return zellen dazwischen
      */
-    public abstract Cell[] getColumns(int x, int y);
+    public Cell[] getColumns(int x, int y) {
+        Cell[] cells = new Cell[4];
+        for (int i = 0; i < 4; i++) {
+            try {
+                cells[i] = getBoard().getCell(x + i, y);
+            } catch (CellAccessException e) {
+                cells[i] = null;
+            }
+        }
+
+        return cells;
+    }
 
     /**
      * Hiermit holen wir alle Zellen von oben links nach unten rechts.
@@ -59,14 +82,36 @@ public abstract class Scanner {
      * @param y ziel
      * @return die zellen dazwischen
      */
-    public abstract Cell[] getDiagonalDown(int x, int y);
+    public Cell[] getDiagonalDown(int x, int y) {
+        Cell[] cells = new Cell[4];
+        for (int i = 0; i < 4; i++) {
+            try {
+                cells[i] = getBoard().getCell(x + i, y + i);
+            } catch (CellAccessException e) {
+                cells[i] = null;
+            }
+        }
+
+        return cells;
+    }
     /**
      * Hiermit holen wir alle Zellen von oben rechts nach unten links.
      * @param x start
      * @param y ziel
      * @return die zellen dazwischen
      */
-    public abstract Cell[] getDiagonalUp(int x, int y);
+    public Cell[] getDiagonalUp(int x, int y) {
+        Cell[] cells = new Cell[4];
+        for (int i = 0; i < 4; i++) {
+            try {
+                cells[i] = getBoard().getCell(x - i, y + i);
+            } catch (CellAccessException e) {
+                cells[i] = null;
+            }
+        }
+
+        return cells;
+    }
 
     /**
      * Getter für das Board

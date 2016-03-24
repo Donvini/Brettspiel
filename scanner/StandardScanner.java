@@ -1,6 +1,5 @@
 package edu.kit.informatik.scanner;
 
-import edu.kit.informatik.exceptions.CellAccessException;
 import edu.kit.informatik.gameElements.board.Cell;
 import edu.kit.informatik.gameElements.board.StandardBoard;
 
@@ -20,61 +19,6 @@ public class StandardScanner extends Scanner {
         super(board);
     }
 
-    @Override
-    public Cell[] getRows(int x, int y) {
-        Cell[] cells = new Cell[4];
-        for (int i = 0; i < 4; i++) {
-            try {
-                cells[i] = getBoard().getCell(x, y + i);
-            } catch (CellAccessException e) {
-                cells[i] = null;
-            }
-        }
-
-        return cells;
-    }
-
-    @Override
-    public Cell[] getColumns(int x, int y) {
-        Cell[] cells = new Cell[4];
-        for (int i = 0; i < 4; i++) {
-            try {
-                cells[i] = getBoard().getCell(x + i, y);
-            } catch (CellAccessException e) {
-                cells[i] = null;
-            }
-        }
-
-        return cells;
-    }
-
-    @Override
-    public Cell[] getDiagonalDown(int x, int y) {
-        Cell[] cells = new Cell[4];
-        for (int i = 0; i < 4; i++) {
-            try {
-                cells[i] = getBoard().getCell(x + i, y + i);
-            } catch (CellAccessException e) {
-                cells[i] = null;
-            }
-        }
-
-        return cells;
-    }
-
-    @Override
-    public Cell[] getDiagonalUp(int x, int y) {
-        Cell[] cells = new Cell[4];
-        for (int i = 0; i < 4; i++) {
-            try {
-                cells[i] = getBoard().getCell(x - i, y + i);
-            } catch (CellAccessException e) {
-                cells[i] = null;
-            }
-        }
-
-        return cells;
-    }
     /**
      * Die Methode um zu überprüfen ob jemand gewonnen hat.
      * @return true wenn jemand gewonnen hat.
